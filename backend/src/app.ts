@@ -1,16 +1,23 @@
+import dotenv from "dotenv"
+dotenv.config()
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv"
+import bookingRoutes from "./routes/bookings.routes"
+import availabilityRoutes from "./routes/availability.routes"
+import authRoutes from "./routes/auth.routes"
+import adminAvailabilityRoutes from "./routes/adminAvailability.routes"
+import adminBookingsRoutes from "./routes/adminBookings.routes"
 
-dotenv.config()
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-app.get("/health", (_, res) => {
-    res.json({ status: "ok" });
-});
+app.use("/api/bookings", bookingRoutes);
+app.use("/api/availability", availabilityRoutes);
+app.use("/api/auth", authRoutes)
+app.use("/api/admin/availability", adminAvailabilityRoutes)
+app.use("/api/admin/bookings", adminBookingsRoutes)
 
 export default app;
