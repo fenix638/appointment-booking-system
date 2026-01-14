@@ -14,10 +14,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/bookings", bookingRoutes);
-app.use("/api/availability", availabilityRoutes);
-app.use("/api/auth", authRoutes)
-app.use("/api/admin/availability", adminAvailabilityRoutes)
-app.use("/api/admin/bookings", adminBookingsRoutes)
+app.use("/services/bookings", bookingRoutes);
+app.use("/services/availability", availabilityRoutes);
+app.use("/services/auth", authRoutes)
+app.use("/services/admin/availability", adminAvailabilityRoutes)
+app.use("/services/admin/bookings", adminBookingsRoutes)
 
 export default app;
