@@ -25,6 +25,7 @@
     "zod": "^4.3.5"
   },
   "devDependencies": {
+    "@prisma/studio": "^0.511.0",
     "@types/bcrypt": "^6.0.0",
     "@types/bcryptjs": "^2.4.6",
     "@types/cors": "^2.8.19",
