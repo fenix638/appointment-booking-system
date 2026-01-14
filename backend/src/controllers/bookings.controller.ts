@@ -2,6 +2,7 @@ import { Request, Response } from "express"
 import { z } from "zod"
 import prisma from "../lib/prisma"
 import { generateTimeSlots } from "../utils/timeSlots"
+import { sendBookingConfirmationEmail } from "../services/email.service"
 
 const bookingSchema = z.object({
     name: z.string().min(2),
@@ -59,6 +60,17 @@ export async function createBooking(req: Request, res: Response) {
             time,
         },
     })
+
+    try {
+        await sendBookingConfirmationEmail(
+            booking.email,
+            booking.name,
+            date,
+            time
+        )
+    } catch (error) {
+        console.error("Email failed:", error)
+    }
 
     res.status(201).json(booking)
 }
